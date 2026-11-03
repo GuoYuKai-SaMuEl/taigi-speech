@@ -1,0 +1,1437 @@
+/* ==========================================================================
+   Taigi Speech — editorial print stylesheet
+   Paper · ink · jade (Tâi-lô input) · cinnabar (seal / human reference)
+   Type: Spectral (Latin serif) · Noto Serif TC (Han) · IBM Plex Mono (data)
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --paper: #FAF8F2;
+  --paper-deep: #F1EDE2;
+  --ink: #211E19;
+  --ink-2: #57534A;
+  --ink-3: #8D8779;
+  --line: #E1DBCC;
+  --line-soft: #EDE9DD;
+  --jade: #2B5A49;
+  --jade-deep: #1F4437;
+  --seal: #B23A2B;
+  --seal-deep: #8F2E22;
+
+  --serif: "Spectral", "Noto Serif TC", "Songti TC", Georgia, serif;
+  --mono: "IBM Plex Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+
+  --rule-ink: 2px solid var(--ink);
+  --hairline: 1px solid var(--line);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-rendering: optimizeLegibility;
+}
+
+/* Paper grain — a whisper of tooth on the page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--seal);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 2px;
+}
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+p {
+  margin: 0 0 14px;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+a:hover {
+  color: var(--seal);
+  text-decoration-color: currentColor;
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 44px);
+}
+
+main.wrap {
+  flex: 1;
+  padding-top: 8px;
+  padding-bottom: 96px;
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -64px;
+  z-index: 10;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 10px 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Shared chrome: top bar, footer, spine
+   -------------------------------------------------------------------------- */
+
+.topbar {
+  border-bottom: var(--hairline);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.01em;
+}
+
+.wordmark:hover {
+  color: var(--ink);
+}
+
+.wordmark .seal-mark {
+  flex: none;
+}
+
+.wordmark-sub {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  margin-left: 2px;
+  padding-left: 12px;
+  border-left: 1px solid var(--line);
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+}
+
+.topnav a {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-2);
+}
+
+.topnav a:hover {
+  color: var(--seal);
+}
+
+.top-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--jade);
+  border: 1px solid color-mix(in srgb, var(--jade) 45%, transparent);
+  padding: 4px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.site-footer {
+  border-top: var(--hairline);
+}
+
+.foot-grid {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding-top: 26px;
+  padding-bottom: 30px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+.foot-grid p {
+  margin: 0;
+}
+
+.foot-mark {
+  color: var(--jade);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.spine {
+  height: 7px;
+  background: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   Headings & sections — numbered like a journal
+   -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 92px;
+  padding-top: 20px;
+  border-top: var(--rule-ink);
+  font-size: 1.32rem;
+  letter-spacing: 0.005em;
+}
+
+h2 .no {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--seal);
+}
+
+h2 .no::after {
+  content: " ·";
+  color: var(--ink-3);
+}
+
+h3.subsection {
+  margin-top: 56px;
+  font-size: 1.08rem;
+}
+
+h3.subsection::before {
+  content: "§";
+  color: var(--ink-3);
+  font-weight: 400;
+  margin-right: 10px;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 22px;
+}
+
+.eyebrow .dot {
+  color: var(--seal);
+  margin: 0 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons & links
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  padding: 12px 22px;
+  border-radius: 2px;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink);
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-solid:hover {
+  background: var(--seal);
+  border-color: var(--seal);
+  color: #FFF;
+}
+
+.arrow-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.arrow-link .arr {
+  transition: transform 0.18s ease;
+  color: var(--seal);
+  font-family: var(--serif);
+  font-size: 14px;
+}
+
+.arrow-link:hover {
+  color: var(--seal);
+}
+
+.arrow-link:hover .arr {
+  transform: translateX(3px);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   Landing — masthead & project ledger
+   -------------------------------------------------------------------------- */
+
+.masthead {
+  position: relative;
+  padding: clamp(64px, 11vh, 120px) 0 20px;
+  overflow: hidden;
+}
+
+.masthead h1 {
+  position: relative;
+  font-size: clamp(2.9rem, 6.4vw, 4.4rem);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.04;
+  margin-bottom: 20px;
+}
+
+.masthead h1 .h1-dot {
+  color: var(--seal);
+}
+
+.tagline {
+  position: relative;
+  max-width: 34em;
+  font-size: 1.22rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin-bottom: 30px;
+}
+
+.tagline em {
+  color: var(--jade);
+  font-style: italic;
+}
+
+.byline {
+  position: relative;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+.byline .sep {
+  color: var(--ink-3);
+  margin: 0 8px;
+}
+
+.byline a {
+  color: inherit;
+}
+
+.ghost-char {
+  position: absolute;
+  right: clamp(-40px, -2vw, 0px);
+  top: -30px;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-weight: 900;
+  font-size: clamp(240px, 30vw, 400px);
+  line-height: 1;
+  color: color-mix(in srgb, var(--ink) 7%, transparent);
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: project;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 0 28px;
+  padding: 40px 0;
+  border-bottom: var(--hairline);
+}
+
+.project:first-child {
+  border-top: var(--hairline);
+}
+
+.p-no {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--seal);
+  padding-top: 7px;
+}
+
+.p-body h3 {
+  font-size: 1.42rem;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.p-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--jade);
+  margin-bottom: 14px;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 3px 8px;
+  margin-left: 10px;
+  vertical-align: 2px;
+}
+
+.p-sum {
+  max-width: 62ch;
+  color: var(--ink-2);
+  margin-bottom: 18px;
+}
+
+.p-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+
+/* --------------------------------------------------------------------------
+   Demo page — paper header
+   -------------------------------------------------------------------------- */
+
+.paper-head {
+  padding: clamp(48px, 8vh, 88px) 0 8px;
+}
+
+.paper-head h1 {
+  font-size: clamp(1.95rem, 4.4vw, 3rem);
+  letter-spacing: -0.008em;
+  line-height: 1.14;
+  max-width: 22em;
+  margin-bottom: 26px;
+}
+
+.paper-head h1:has(+ .paper-sub) {
+  margin-bottom: 12px;
+}
+
+.paper-sub {
+  max-width: 34em;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink-2);
+  margin: 0 0 26px;
+}
+
+.head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  font-size: 1.02rem;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.head-affil {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 26px;
+}
+
+.head-venue {
+  color: var(--seal);
+}
+
+.head-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Overview & key-finding stat card
+   -------------------------------------------------------------------------- */
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 56px;
+  align-items: start;
+  margin-top: 36px;
+}
+
+.lede {
+  font-size: 1.12rem;
+  line-height: 1.8;
+  max-width: 66ch;
+}
+
+.lede p {
+  margin-bottom: 18px;
+}
+
+.lede-zh {
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: var(--hairline);
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--ink-2);
+}
+
+.lede-zh .lede-zh-kicker {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+  margin: 0 0 12px;
+}
+
+.stat-card {
+  background: var(--paper-deep);
+  border: var(--hairline);
+  border-radius: 3px;
+  padding: 26px 28px 22px;
+}
+
+.stat-card .stat-kicker {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 18px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 2px;
+}
+
+.stat-row + .stat-row {
+  border-top: var(--hairline);
+}
+
+.stat-label {
+  font-size: 0.98rem;
+  color: var(--ink-2);
+}
+
+.stat-row.is-hero .stat-label {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.stat-num {
+  font-size: 2.15rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-row.is-hero .stat-num {
+  color: var(--jade);
+  font-size: 2.55rem;
+}
+
+.stat-delta {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--jade-deep);
+  background: color-mix(in srgb, var(--jade) 15%, transparent);
+  border-radius: 2px;
+  padding: 6px 10px;
+}
+
+.stat-note {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #7A7462;
+}
+
+/* --------------------------------------------------------------------------
+   Results table
+   -------------------------------------------------------------------------- */
+
+.table-wrap {
+  margin-top: 34px;
+  overflow-x: auto;
+}
+
+.results {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+  font-size: 0.95rem;
+}
+
+.results caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-bottom: 14px;
+}
+
+.results th,
+.results td {
+  padding: 13px 16px;
+  border-bottom: var(--hairline);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.results thead th {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1.5px solid var(--ink);
+  white-space: nowrap;
+}
+
+.results tbody th[scope="row"] {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.results tbody tr:last-child th,
+.results tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.results tr.human-row {
+  background: #ECE6D6;
+  box-shadow: inset 3px 0 0 var(--seal);
+}
+
+.score-cell {
+  min-width: 130px;
+}
+
+.score-cell .num {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.92rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.results .mean-col {
+  border-left: var(--hairline);
+}
+
+.results td.mean-col .num {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.bar {
+  display: block;
+  height: 3px;
+  margin-top: 7px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  background: var(--jade);
+}
+
+.results tr[data-cond="han"] .bar > span {
+  background: #A9A18E;
+}
+
+.results tr.human-row .bar > span {
+  background: var(--seal);
+}
+
+.cond-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* --------------------------------------------------------------------------
+   Condition markers — jade square = Tâi-lô input, hollow = Han-ji only,
+   cinnabar circle = human reference
+   -------------------------------------------------------------------------- */
+
+.cond-mark {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex: none;
+}
+
+.cond-mark.cond-han {
+  border: 1.5px solid var(--ink-2);
+  background: transparent;
+}
+
+.cond-mark.cond-tl,
+.cond-mark.cond-both {
+  background: var(--jade);
+}
+
+.cond-mark.cond-human {
+  background: var(--seal);
+  border-radius: 50%;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  align-items: center;
+  margin: 30px 0 6px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Sentence specimen cards
+   -------------------------------------------------------------------------- */
+
+.sentence-list {
+  display: grid;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.sentence-card {
+  border: 1px solid #EAE5D8;
+  border-radius: 3px;
+  padding: 26px 28px 24px;
+  background: color-mix(in srgb, #FFFDF8 60%, var(--paper));
+}
+
+.sentence-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.sentence-text {
+  min-width: 0;
+}
+
+.hanji {
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+/* Romanization layer — jade; combining marks need these fallbacks */
+.tailo {
+  font-family: "Spectral", "Segoe UI", "Noto Sans", sans-serif;
+  font-size: 1.14rem;
+  color: var(--jade-deep);
+  margin: 0 0 4px;
+  line-height: 1.6;
+}
+
+.english {
+  color: var(--ink-3);
+  font-style: italic;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.sentence-id {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  margin: 8px 0 0;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Clip grid — shared hairlines between cells
+   -------------------------------------------------------------------------- */
+
+.clip-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: var(--hairline);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .clip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1020px) {
+  .clip-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .clip-grid.has-human {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.clip {
+  background: var(--paper);
+  padding: 16px 18px 14px;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.clip.human {
+  background: color-mix(in srgb, var(--paper-deep) 55%, var(--paper));
+  box-shadow: inset 0 2px 0 var(--seal);
+}
+
+.clip-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0 0 14px;
+}
+
+.clip.human .clip-label {
+  color: var(--seal-deep);
+}
+
+.clip-mean {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: -4px 0 10px;
+}
+
+.clip-mean-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.clip-mean-num {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.scores {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  display: grid;
+  gap: 3px 0;
+}
+
+.scores > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.scores dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.scores dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.scores .sd {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  margin-left: 5px;
+}
+
+.clip .license {
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  margin: 12px 0 0;
+}
+
+.human-ref {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  margin: 14px 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   Custom audio player — tape-meter aesthetic
+   -------------------------------------------------------------------------- */
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2px 0 4px;
+}
+
+.p-toggle {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.16s ease, border-color 0.16s ease;
+}
+
+.p-toggle:hover {
+  background: var(--ink);
+}
+
+.p-toggle:hover .p-icon svg {
+  fill: var(--paper);
+}
+
+.p-toggle .p-icon {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.p-toggle svg {
+  width: 11px;
+  height: 11px;
+  fill: var(--ink);
+  transition: fill 0.16s ease;
+}
+
+.p-toggle .i-pause {
+  display: none;
+}
+
+.player.is-playing .p-toggle {
+  background: var(--seal);
+  border-color: var(--seal);
+}
+
+.player.is-playing .p-toggle svg {
+  fill: #FFF;
+}
+
+.player.is-playing .i-play {
+  display: none;
+}
+
+.player.is-playing .i-pause {
+  display: block;
+}
+
+.p-track {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.p-tick {
+  flex: 1 1 0;
+  max-width: 5px;
+  height: var(--h, 60%);
+  min-height: 3px;
+  background: #CBC3AE;
+  border-radius: 1px;
+  transition: background-color 0.12s linear;
+}
+
+.p-tick.is-on {
+  background: var(--jade);
+}
+
+.clip.human .p-tick.is-on {
+  background: var(--seal);
+}
+
+.p-cursor {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: 0;
+  width: 1.5px;
+  background: var(--ink);
+  opacity: 0;
+  transition: left 0.26s linear;
+}
+
+.player.is-playing .p-cursor,
+.player.is-seekable .p-cursor {
+  opacity: 1;
+}
+
+.p-time {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  min-width: 74px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Narrow cells (e.g. four columns at ~1000–1200px): give the meter the full
+   row beside the button and drop the timecode underneath it. */
+@container (max-width: 250px) {
+  .player {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+
+  .p-track {
+    flex-basis: calc(100% - 46px);
+  }
+
+  .p-time {
+    flex-basis: 100%;
+    min-width: 0;
+    padding-left: 46px;
+    text-align: left;
+  }
+}
+
+.player.is-error .p-track,
+.player.is-error .p-time {
+  display: none;
+}
+
+.player.is-error::after {
+  content: "audio unavailable";
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+.player.is-error .p-toggle {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Citation
+   -------------------------------------------------------------------------- */
+
+.code-block {
+  position: relative;
+  margin-top: 30px;
+  background: var(--paper-deep);
+  border: var(--hairline);
+  border-radius: 3px;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 20px 22px;
+  padding-right: 130px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+
+.code-block .copy {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 7px 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Notes (acknowledgments, license)
+   -------------------------------------------------------------------------- */
+
+.site-notes {
+  border-top: var(--rule-ink);
+  margin-top: 96px;
+  padding-top: 8px;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+.site-notes h2 {
+  border-top: none;
+  margin-top: 44px;
+  padding-top: 0;
+  font-size: 1.05rem;
+}
+
+.site-notes h2 .no {
+  display: none;
+}
+
+.site-notes ul {
+  padding-left: 20px;
+  margin: 0 0 16px;
+}
+
+.site-notes li {
+  margin-bottom: 8px;
+}
+
+.site-notes a {
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility & print
+   -------------------------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body::after,
+  .topbar,
+  .spine,
+  .site-footer,
+  .p-toggle,
+  .btn,
+  .arrow-link {
+    display: none !important;
+  }
+
+  body {
+    background: #FFF;
+    font-size: 11pt;
+  }
+
+  .sentence-card,
+  .clip,
+  .stat-card,
+  .code-block {
+    break-inside: avoid;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Small screens
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 720px) {
+  .ghost-char {
+    font-size: 200px;
+    right: -30px;
+    top: -10px;
+  }
+
+  .project {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 30px 0;
+  }
+
+  .p-no {
+    padding-top: 0;
+  }
+
+  .wordmark-sub {
+    display: none;
+  }
+
+  h2 {
+    margin-top: 68px;
+  }
+
+  .sentence-head {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sentence-id {
+    margin-top: 0;
+  }
+
+  .sentence-card {
+    padding: 20px 18px;
+  }
+
+  .results {
+    font-size: 0.85rem;
+  }
+
+  .results th,
+  .results td {
+    padding: 10px 8px;
+  }
+
+  .score-cell {
+    min-width: 96px;
+  }
+}
+
+/* Phones: fit all five columns, including Mean, without sideways scrolling */
+@media (max-width: 520px) {
+  .results {
+    min-width: 0;
+    font-size: 0.8rem;
+  }
+
+  .results th,
+  .results td {
+    padding: 9px 4px;
+  }
+
+  .results thead th {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    white-space: normal;
+  }
+
+  .results tbody th[scope="row"] {
+    white-space: normal;
+  }
+
+  .score-cell {
+    min-width: 0;
+  }
+
+  .score-cell .num {
+    font-size: 0.82rem;
+  }
+
+  .code-block pre {
+    padding-right: 22px;
+  }
+
+  .code-block .copy {
+    position: static;
+    margin: 0 22px 16px;
+    display: inline-block;
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    font-size: 16px;
+  }
+
+  .p-time {
+    display: none;
+  }
+}

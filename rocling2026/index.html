@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fantastic Taiwanese Hokkien Corpora and Where to Find Them · Demo</title>
+  <meta name="description" content="Audio samples for the ROCLING 2026 paper: Taiwanese Hokkien speech synthesized from Han-ji, Tâi-lô, or both, with native-speaker ratings. 臺語（台灣閩南語）語音合成示範：以大型語言模型 TTS 從漢字、臺羅合成臺語語音，並由母語者評分。">
+  <meta name="theme-color" content="#FAF8F2">
+  <link rel="canonical" href="https://guoyukai-samuel.github.io/taigi-speech/rocling2026/">
+
+  <!-- Link previews -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Taigi Speech">
+  <meta property="og:title" content="Fantastic Taiwanese Hokkien Corpora and Where to Find Them · Demo">
+  <meta property="og:description" content="Taiwanese Hokkien speech synthesized from Han-ji, Tâi-lô, or both, with native-speaker ratings. 臺語語音合成示範與母語者評分。">
+  <meta property="og:url" content="https://guoyukai-samuel.github.io/taigi-speech/rocling2026/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Fantastic Taiwanese Hokkien Corpora and Where to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs and TTS",
+    "author": [
+      { "@type": "Person", "name": "Yu-Kai Guo", "affiliation": "National Taiwan University", "url": "https://guoyukai-samuel.github.io/taigi-speech/" },
+      { "@type": "Person", "name": "Chen-Wei Hsu", "affiliation": "National Taiwan University" },
+      { "@type": "Person", "name": "Hung-Wei Chen", "affiliation": "National Taiwan University" },
+      { "@type": "Person", "name": "Hung-Yi Lee", "affiliation": "National Taiwan University" }
+    ],
+    "datePublished": "2026",
+    "inLanguage": "en",
+    "isPartOf": { "@type": "PublicationEvent", "name": "ROCLING 2026" },
+    "abstract": "We synthesize Taiwanese Hokkien text and speech corpora with off-the-shelf general-purpose LLMs and TTS models. The best LLMs translate between Mandarin and Taiwanese near dictionary-reference quality, and Tâi-lô is indispensable for speech synthesis.",
+    "description": "臺語（台灣閩南語）是低資源語言。本研究以現成的大型語言模型與語音合成模型合成臺語文字與語音語料，並以母語者評分驗證；結果顯示臺羅對正確發音不可或缺。",
+    "keywords": ["Taiwanese Hokkien", "Taigi", "Tâi-gí", "Tâi-lô", "Han-ji", "text-to-speech", "large language models", "low-resource", "臺語", "台語", "臺灣閩南語", "台灣閩南語", "語音合成", "大型語言模型", "臺羅", "台羅", "漢字", "語料"],
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://guoyukai-samuel.github.io/taigi-speech/rocling2026/"
+  }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+TC:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-demo="data.json">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <div class="topbar-inner wrap">
+      <a class="wordmark" href="../" aria-label="Back to Taigi Speech">
+        <svg class="seal-mark" width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="2" y="2" width="60" height="60" rx="9" fill="#B23A2B"/>
+          <text x="32" y="46" font-family="'Noto Serif TC','Songti TC',serif" font-size="38" font-weight="700" fill="#FAF8F2" text-anchor="middle">台</text>
+        </svg>
+        Taigi Speech
+        <span class="wordmark-sub">臺語 · Tâi-gí</span>
+      </a>
+      <div class="topnav">
+        <span class="top-tag">ROCLING 2026 · Demo</span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="wrap">
+    <header class="paper-head">
+      <p class="eyebrow">ROCLING 2026<span class="dot">·</span>Conference Paper<span class="dot">·</span>Demo</p>
+      <h1>Fantastic Taiwanese Hokkien Corpora and Where to Find Them</h1>
+      <p class="paper-sub">Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs and TTS</p>
+      <p class="head-meta">Yu-Kai Guo · Chen-Wei Hsu · Hung-Wei Chen · Hung-Yi Lee</p>
+      <p class="head-affil">National Taiwan University</p>
+      <div class="head-actions buttons">
+        <a class="btn btn-solid" href="paper.pdf">Paper (PDF)</a>
+        <a class="arrow-link" href="../">Back to Taigi Speech <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </header>
+
+    <section aria-labelledby="overview">
+      <h2 id="overview"><span class="no">01</span>Overview</h2>
+      <div class="overview-grid">
+        <div class="lede">
+          <p>
+            This page accompanies the speech-synthesis experiment of the paper.
+            We synthesize Taiwanese Hokkien with Gemini 3.1 Flash TTS, a general-purpose
+            text-to-speech model without official support for the language, and compare three
+            input conditions: Han-ji (Chinese characters) only, Tâi-lô (romanization) only, and both.
+            Ten native speakers rated every clip blind on pronunciation, naturalness, and accent
+            on a 1–5 scale.
+          </p>
+          <p>
+            Tâi-lô turns out to be essential for correct pronunciation: with Han-ji alone the
+            pronunciation score drops to 2.82, compared with 3.75–3.76 whenever Tâi-lô is given.
+          </p>
+          <div class="lede-zh" lang="zh-Hant-TW">
+            <p class="lede-zh-kicker">中文摘要</p>
+            <p>
+              臺灣閩南語（臺語）是低資源語言，公開語料稀少且常受授權限制。本研究提出以現成的通用大型語言模型（LLM）與語音合成（TTS）模型，合成臺語文字與語音語料。在華語與臺語的雙向翻譯任務中，表現最佳的 Gemini 3.1 Pro Preview 已接近辭典參考譯文的品質，經微調的本地小型模型也能與許多大型雲端模型相當。
+            </p>
+            <p>
+              本頁展示論文中的語音合成實驗：以 Gemini 3.1 Flash TTS 分別輸入漢字、臺羅（Tâi-lô）及漢字加臺羅合成臺語語音，並由 10 位臺語母語者盲聽評分。結果顯示臺羅對正確發音不可或缺：只輸入漢字時，發音分數降至 2.82；有臺羅時則為 3.75–3.76（滿分 5 分）。
+            </p>
+          </div>
+        </div>
+        <aside class="stat-card" aria-label="Key finding">
+          <p class="stat-kicker">Key finding · Pronunciation, 1–5</p>
+          <div class="stat-row">
+            <span class="stat-label">Han-ji only</span>
+            <span class="stat-num">2.82</span>
+          </div>
+          <div class="stat-row is-hero">
+            <span class="stat-label">Han-ji + Tâi-lô</span>
+            <span class="stat-num">3.76</span>
+          </div>
+          <span class="stat-delta">+0.94 with Tâi-lô</span>
+          <small class="stat-note">Mean ratings over 30 sentences × 10 native speakers;
+            clips rated blind.</small>
+        </aside>
+      </div>
+    </section>
+
+    <section aria-labelledby="results-heading">
+      <h2 id="results-heading"><span class="no">02</span>Overall results</h2>
+      <div id="results"></div>
+    </section>
+
+    <section aria-labelledby="samples">
+      <h2 id="samples"><span class="no">03</span>Audio samples</h2>
+      <p class="muted small" style="margin-top: 26px;">
+        Scores are mean ± standard deviation over 10 native-speaker ratings (1–5);
+        “Mean” is the average of the three aspects.
+        Human recordings are played at their original level, as in the listening test,
+        and are noticeably quieter than the synthetic clips.
+      </p>
+      <div class="legend" aria-label="Condition markers">
+        <span class="legend-item"><span class="cond-mark cond-tl" aria-hidden="true"></span>Tâi-lô given</span>
+        <span class="legend-item"><span class="cond-mark cond-han" aria-hidden="true"></span>Han-ji only</span>
+        <span class="legend-item"><span class="cond-mark cond-human" aria-hidden="true"></span>Human reference</span>
+      </div>
+      <div id="featured" class="sentence-list"></div>
+
+      <h3 class="subsection">More examples</h3>
+      <p class="muted small">Synthetic clips only; the human recording’s scores are shown for reference.</p>
+      <div id="more" class="sentence-list"></div>
+    </section>
+
+    <section aria-labelledby="citation">
+      <h2 id="citation"><span class="no">04</span>Citation</h2>
+      <div class="code-block">
+        <pre><code id="bibtex">@inproceedings{guo2026fantastic,
+  title     = {Fantastic {T}aiwanese {H}okkien Corpora and Where to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf {LLMs} and {TTS}},
+  author    = {Guo, Yu-Kai and Hsu, Chen-Wei and Chen, Hung-Wei and Lee, Hung-Yi},
+  booktitle = {Proceedings of the 38th Conference on Computational Linguistics and Speech Processing (ROCLING 2026)},
+  year      = {2026},
+  note      = {To appear},
+  url       = {https://guoyukai-samuel.github.io/taigi-speech/rocling2026/paper.pdf}
+}</code></pre>
+        <button type="button" class="btn copy" data-copy="bibtex">Copy BibTeX</button>
+      </div>
+    </section>
+
+    <section class="site-notes" aria-labelledby="license-heading">
+      <h2 id="ack-heading"><span class="no">05</span>Acknowledgments</h2>
+      <p>
+        We thank Chien-Ying Li for the careful expert annotation of the translation outputs,
+        and the ten native Taiwanese listeners who participated in the speech evaluation.
+        We are grateful to the National Center for High-performance Computing (NCHC) of the
+        National Institutes of Applied Research (NIAR), Taiwan, for providing the computational
+        and storage resources used in this work. This work was supported by the Ministry of
+        Education (MOE) of Taiwan under the project Taiwan Centers of Excellence in Artificial
+        Intelligence, through the NTU Artificial Intelligence Center of Research Excellence.
+      </p>
+
+      <h2 id="license-heading"><span class="no">06</span>License and attribution</h2>
+      <ul>
+        <li>Website code: <a href="../LICENSE">MIT License</a>.</li>
+        <li>Synthetic audio and rating data: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+        <li>Paper PDF: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, following the ACL Anthology license for ROCLING proceedings.</li>
+        <li>
+          Sentence texts (Han-ji and Tâi-lô) are taken unchanged from the
+          <a href="https://suisiann-dataset.ithuan.tw/">SuíSiann Dataset</a> and are shown only
+          as a speech-synthesis research demonstration, in line with the dataset’s text license.
+          Copyright remains with the original authors.
+        </li>
+        <li>Synthetic speech was generated with Google Gemini 3.1 Flash TTS; its use is subject to Google’s terms of service.</li>
+        <li>
+          The three human recordings in <code>rocling2026/audio_human/</code> come from the
+          <a href="https://suisiann-dataset.ithuan.tw/">SuíSiann Dataset</a> (v0.2.1) and are licensed under
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+          They were converted from WAV to MP3 without editing and remain under CC BY-SA 4.0;
+          the other licenses on this site do not apply to them.
+          The full set of original recordings is available from the SuíSiann website.
+        </li>
+      </ul>
+      <p>
+        Details: <a href="../LICENSE-CONTENT.md">LICENSE-CONTENT.md</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-grid wrap">
+      <p>Yu-Kai Guo — National Taiwan University</p>
+      <p class="foot-mark">ROCLING 2026</p>
+    </div>
+  </footer>
+  <div class="spine" aria-hidden="true"></div>
+
+  <script src="../assets/demo.js"></script>
+</body>
+</html>

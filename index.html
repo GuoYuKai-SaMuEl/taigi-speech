@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taigi Speech</title>
+  <meta name="description" content="Research on Taiwanese Hokkien speech and language technology. 臺語（台灣閩南語）語音與語言技術研究：語音合成、語料建置與聲調辨識。">
+  <meta name="theme-color" content="#FAF8F2">
+  <link rel="canonical" href="https://guoyukai-samuel.github.io/taigi-speech/">
+
+  <!-- Link previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Taigi Speech">
+  <meta property="og:title" content="Taigi Speech">
+  <meta property="og:description" content="Research on Taiwanese Hokkien speech and language technology. 臺語語音與語言技術研究。">
+  <meta property="og:url" content="https://guoyukai-samuel.github.io/taigi-speech/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Taigi Speech",
+        "alternateName": "臺語語音研究",
+        "url": "https://guoyukai-samuel.github.io/taigi-speech/",
+        "inLanguage": "en",
+        "description": "Research on Taiwanese Hokkien speech and language technology. 臺語（台灣閩南語）語音與語言技術研究。",
+        "author": { "@id": "https://guoyukai-samuel.github.io/taigi-speech/#author" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://guoyukai-samuel.github.io/taigi-speech/#author",
+        "name": "Yu-Kai Guo",
+        "affiliation": { "@type": "CollegeOrUniversity", "name": "National Taiwan University", "url": "https://www.ntu.edu.tw/" },
+        "knowsAbout": ["Taiwanese Hokkien", "speech synthesis", "speech processing", "臺語", "語音合成"],
+        "sameAs": [
+          "https://scholar.google.com/citations?user=0V8Dt7MAAAAJ",
+          "https://www.linkedin.com/in/yukaiguo",
+          "https://github.com/GuoYuKai-SaMuEl"
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+TC:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <div class="topbar-inner wrap">
+      <a class="wordmark" href="./" aria-label="Taigi Speech — home">
+        <svg class="seal-mark" width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="2" y="2" width="60" height="60" rx="9" fill="#B23A2B"/>
+          <text x="32" y="46" font-family="'Noto Serif TC','Songti TC',serif" font-size="38" font-weight="700" fill="#FAF8F2" text-anchor="middle">台</text>
+        </svg>
+        Taigi Speech
+        <span class="wordmark-sub">臺語 · Tâi-gí</span>
+      </a>
+      <nav class="topnav" aria-label="Profiles">
+        <a href="https://scholar.google.com/citations?user=0V8Dt7MAAAAJ">Scholar</a>
+        <a href="https://www.linkedin.com/in/yukaiguo">LinkedIn</a>
+        <a href="https://github.com/GuoYuKai-SaMuEl">GitHub</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main" class="wrap">
+    <header class="masthead">
+      <span class="ghost-char" aria-hidden="true">臺</span>
+      <p class="eyebrow">Speech &amp; Language Technology<span class="dot">·</span>Taiwanese Hokkien</p>
+      <h1>Taigi Speech<span class="h1-dot">.</span></h1>
+      <p class="tagline">Research on Taiwanese Hokkien (<em>Tâi-gí</em>) speech and language
+        technology — building the text and the voice for a language the machines
+        don’t yet speak.</p>
+      <p class="byline">Yu-Kai Guo<span class="sep">—</span><a href="https://www.ntu.edu.tw/">National Taiwan University</a></p>
+    </header>
+
+    <section aria-labelledby="projects">
+      <h2 id="projects">Projects</h2>
+      <ol id="project-list" class="project-list"></ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-grid wrap">
+      <p>Yu-Kai Guo — National Taiwan University</p>
+      <p class="foot-mark">Tâi-gí · 臺灣閩南語</p>
+    </div>
+  </footer>
+  <div class="spine" aria-hidden="true"></div>
+
+  <script>
+    // Add new projects here; entries are rendered in this order.
+    var PROJECTS = [
+      {
+        title: "Fantastic Taiwanese Hokkien Corpora and Where to Find Them",
+        venue: "ROCLING 2026",
+        summary: "Bootstrapping Taiwanese text and speech corpora with off-the-shelf LLMs and TTS: the best LLMs translate between Mandarin and Taiwanese near dictionary-reference quality, and Tâi-lô is indispensable for speech synthesis.",
+        links: [
+          { label: "Demo", href: "rocling2026/", arrow: "→" },
+          { label: "Paper (PDF)", href: "rocling2026/paper.pdf", arrow: "→" }
+        ]
+      },
+      {
+        title: "STONE: Soft-Label Tone Classification for Taiwanese Hokkien",
+        status: "Coming soon",
+        links: []
+      }
+    ];
+
+    (function () {
+      var list = document.getElementById("project-list");
+      PROJECTS.forEach(function (p, i) {
+        var li = document.createElement("li");
+        li.className = "project";
+
+        var no = document.createElement("span");
+        no.className = "p-no";
+        no.textContent = String(i + 1).padStart(2, "0");
+        li.appendChild(no);
+
+        var body = document.createElement("div");
+        body.className = "p-body";
+
+        var h3 = document.createElement("h3");
+        h3.textContent = p.title;
+        if (p.status) {
+          var badge = document.createElement("span");
+          badge.className = "tag";
+          badge.textContent = p.status;
+          h3.appendChild(badge);
+        }
+        body.appendChild(h3);
+
+        if (p.venue) {
+          var venue = document.createElement("p");
+          venue.className = "p-meta";
+          venue.textContent = p.venue;
+          body.appendChild(venue);
+        }
+        if (p.summary) {
+          var summary = document.createElement("p");
+          summary.className = "p-sum";
+          summary.textContent = p.summary;
+          body.appendChild(summary);
+        }
+
+        var links = document.createElement("div");
+        links.className = "p-links";
+        p.links.forEach(function (l) {
+          var a = document.createElement("a");
+          a.className = "arrow-link";
+          a.href = l.href;
+          a.textContent = l.label;
+          a.appendChild(document.createTextNode(" "));
+          var arr = document.createElement("span");
+          arr.className = "arr";
+          arr.setAttribute("aria-hidden", "true");
+          arr.textContent = l.arrow || "→";
+          a.appendChild(arr);
+          links.appendChild(a);
+        });
+        if (p.links.length) body.appendChild(links);
+
+        li.appendChild(body);
+        list.appendChild(li);
+      });
+    })();
+  </script>
+</body>
+</html>

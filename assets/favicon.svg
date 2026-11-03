@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="9" fill="#B23A2B"/>
+  <rect x="6.5" y="6.5" width="51" height="51" rx="6" fill="none" stroke="#FAF8F2" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="32" y="46" font-family="'Noto Serif TC','Songti TC','MS Song',serif" font-size="38" font-weight="700" fill="#FAF8F2" text-anchor="middle">台</text>
+</svg>

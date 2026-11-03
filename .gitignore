@@ -1,0 +1,6 @@
+# Source export (not part of the site)
+taigi-speech-export.zip
+_export/
+
+# Local tooling
+.claude/
