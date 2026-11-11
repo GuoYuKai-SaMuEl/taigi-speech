@@ -1,4 +1,4 @@
-# Taigi Speech
+# Taigi Research
 
 Research on Taiwanese Hokkien (Taigi) speech and language technology by Yu-Kai Guo, National Taiwan University.
 

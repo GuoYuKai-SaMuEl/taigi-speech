@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Taigi Speech — editorial print stylesheet
+   Taigi Research — editorial print stylesheet
    Paper · ink · jade (Tâi-lô input) · cinnabar (seal / human reference)
    Type: Spectral (Latin serif) · Noto Serif TC (Han) · IBM Plex Mono (data)
    ========================================================================== */
@@ -157,6 +157,7 @@ main.wrap {
   font-weight: 600;
   font-size: 17px;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .wordmark:hover {
@@ -1365,6 +1366,11 @@ h3.subsection::before {
 
   h2 {
     margin-top: 68px;
+  }
+
+  /* The demo header already names the venue; keep the topbar to one line. */
+  .top-tag {
+    display: none;
   }
 
   .sentence-head {
