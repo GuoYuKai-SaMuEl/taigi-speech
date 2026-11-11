@@ -519,6 +519,7 @@ h3.subsection::before {
 .p-links {
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   gap: 10px 28px;
 }
 
@@ -529,6 +530,7 @@ h3.subsection::before {
   cursor: pointer;
   min-width: 7ch;
   text-align: left;
+  line-height: inherit;
 }
 
 /* --------------------------------------------------------------------------
