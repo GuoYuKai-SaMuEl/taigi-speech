@@ -108,7 +108,18 @@
         links: [
           { label: "Demo", href: "rocling2026/", arrow: "→" },
           { label: "Paper (PDF)", href: "rocling2026/paper.pdf", arrow: "→" }
-        ]
+        ],
+        // Keep in sync with the BibTeX on rocling2026/index.html.
+        bibtex: [
+          "@inproceedings{guo2026fantastic,",
+          "  title     = {Fantastic {T}aiwanese {H}okkien Corpora and Where to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf {LLMs} and {TTS}},",
+          "  author    = {Guo, Yu-Kai and Hsu, Chen-Wei and Chen, Hung-Wei and Lee, Hung-Yi},",
+          "  booktitle = {Proceedings of the 38th Conference on Computational Linguistics and Speech Processing (ROCLING 2026)},",
+          "  year      = {2026},",
+          "  note      = {To appear},",
+          "  url       = {https://guoyukai-samuel.github.io/taigi-speech/rocling2026/paper.pdf}",
+          "}"
+        ].join("\n")
       },
       {
         title: "STONE: Soft-Label Tone Classification for Taiwanese Hokkien via CTC-Guided Contrastive Prototypes on Self-Supervised Models",
@@ -116,11 +127,56 @@
         summary: "Soft-label tone classification for Taiwanese Hokkien on self-supervised speech models with CTC-guided alignment: all backbones reach an in-distribution tone error rate below 3% after fine-tuning, and soft labels give confidence scores that accommodate natural tone ambiguity.",
         links: [
           { label: "Paper (PDF)", href: "stone/paper.pdf", arrow: "→" }
-        ]
+        ],
+        bibtex: [
+          "@misc{guo2026stone,",
+          "  title  = {{STONE}: Soft-Label Tone Classification for {T}aiwanese {H}okkien via {CTC}-Guided Contrastive Prototypes on Self-Supervised Models},",
+          "  author = {Guo, Yu-Kai and Hsu, Chen-Wei and Lee, Hung-yi},",
+          "  year   = {2026},",
+          "  note   = {Preprint},",
+          "  url    = {https://guoyukai-samuel.github.io/taigi-speech/stone/paper.pdf}",
+          "}"
+        ].join("\n")
       }
     ];
 
     (function () {
+      // Copies text to the clipboard; falls back to execCommand where the Clipboard API is blocked.
+      function copyText(text, done) {
+        var fallback = function () {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "absolute";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          done();
+        };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else {
+          fallback();
+        }
+      }
+
+      function copyButton(bibtex, title) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "arrow-link copy-link";
+        btn.textContent = "BibTeX";
+        btn.setAttribute("aria-label", "Copy BibTeX for " + title);
+        btn.addEventListener("click", function () {
+          copyText(bibtex, function () {
+            btn.textContent = "Copied";
+            setTimeout(function () { btn.textContent = "BibTeX"; }, 1500);
+          });
+        });
+        return btn;
+      }
+
       var list = document.getElementById("project-list");
       PROJECTS.forEach(function (p, i) {
         var li = document.createElement("li");
@@ -172,7 +228,8 @@
           a.appendChild(arr);
           links.appendChild(a);
         });
-        if (p.links.length) body.appendChild(links);
+        if (p.bibtex) links.appendChild(copyButton(p.bibtex, p.title));
+        if (links.childNodes.length) body.appendChild(links);
 
         li.appendChild(body);
         list.appendChild(li);

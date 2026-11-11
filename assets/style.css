@@ -521,6 +521,15 @@ h3.subsection::before {
   gap: 10px 28px;
 }
 
+.copy-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  min-width: 7ch;
+  text-align: left;
+}
+
 /* --------------------------------------------------------------------------
    Demo page — paper header
    -------------------------------------------------------------------------- */

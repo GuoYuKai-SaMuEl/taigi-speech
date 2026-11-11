@@ -56,8 +56,12 @@ stone/
    Open Graph tags, and the JSON-LD block.
    For a page without audio samples, drop the `#results`, `#featured`, and `#more` sections and the
    `demo.js` script.
-5. Add an entry to the `PROJECTS` array in the root `index.html`, a row to the table above, and the
-   new page to `sitemap.xml`.
+5. Add an entry to the `PROJECTS` array in the root `index.html` (including its `bibtex`, which the
+   landing page's BibTeX link copies), a row to the table above, and the new page to `sitemap.xml`.
+
+When a paper's citation changes (e.g. it appears in the ACL Anthology or on arXiv), update its
+BibTeX in both places: the `bibtex` field in the root `index.html` and the citation block on the
+paper's demo page, if it has one.
 6. Update `LICENSE-CONTENT.md` for any new content.
 
 Keep large source files (WAV, original exports) out of the repository. GitHub Pages does not serve
