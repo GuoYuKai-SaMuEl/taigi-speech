@@ -9,7 +9,7 @@ Website: https://guoyukai-samuel.github.io/taigi-speech/
 | Project | Venue | Links |
 |---|---|---|
 | Fantastic Taiwanese Hokkien Corpora and Where to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs and TTS | ROCLING 2026 | [Demo](rocling2026/) · [Paper (PDF)](rocling2026/paper.pdf) |
-| STONE: Soft-Label Tone Classification for Taiwanese Hokkien | Coming soon | |
+| STONE: Soft-Label Tone Classification for Taiwanese Hokkien via CTC-Guided Contrastive Prototypes on Self-Supervised Models | Preprint | [Paper (PDF)](stone/paper.pdf) |
 
 ## Preview locally
 
@@ -35,6 +35,8 @@ rocling2026/          # ROCLING 2026 demo page
   data.json           # sentences, audio paths, and aggregated scores
   audio/              # synthetic clips: {sentence_id}_{han|tl|both}.mp3
   audio_human/        # SuíSiann human recordings (CC BY-SA 4.0)
+stone/
+  paper.pdf           # STONE preprint (paper only, no demo page)
 ```
 
 ## Adding a demo page for a new paper
@@ -64,6 +66,7 @@ Git LFS files.
 ## License
 
 - Code: [MIT License](LICENSE).
-- Content: the paper PDF, synthetic audio, and rating data are CC BY 4.0; sentence texts follow the
+- Content: the ROCLING 2026 paper PDF, synthetic audio, and rating data are CC BY 4.0; the STONE
+  preprint PDF is © the authors, all rights reserved; sentence texts follow the
   SuíSiann text terms. See [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
   The SuíSiann human recordings in `rocling2026/audio_human/` are CC BY-SA 4.0.

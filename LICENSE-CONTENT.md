@@ -5,7 +5,8 @@ This repository mixes code and content from different sources, each under its ow
 | Content | Location | License / terms |
 |---|---|---|
 | Website code (HTML, CSS, JavaScript) | `index.html`, `rocling2026/index.html`, `assets/` | [MIT License](LICENSE) |
-| Paper PDF | `rocling2026/paper.pdf` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+| Paper PDF (ROCLING 2026) | `rocling2026/paper.pdf` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+| Paper PDF (STONE preprint) | `stone/paper.pdf` | © the authors, all rights reserved (see below) |
 | Synthetic audio | `rocling2026/audio/` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 | Rating data (aggregated scores) | `rocling2026/data.json` (score fields) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 | Sentence texts (Han-ji, Tâi-lô) | `rocling2026/data.json` (`hanji`, `tailo`) | SuíSiann Dataset text terms (see below) |
@@ -19,6 +20,10 @@ to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs 
 [ACL Anthology copyright policy](https://aclanthology.org/faq/copyright/), which applies the
 Creative Commons Attribution 4.0 International License to materials from 2016 onward, it is shared
 under CC BY 4.0.
+
+`stone/paper.pdf` is a preprint of *STONE: Soft-Label Tone Classification for Taiwanese Hokkien
+via CTC-Guided Contrastive Prototypes on Self-Supervised Models*. It is posted here for reading;
+copyright remains with the authors and no license is granted beyond that.
 
 ## Sentence texts
 
