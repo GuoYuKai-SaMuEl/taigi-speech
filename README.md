@@ -9,7 +9,7 @@ Website: https://guoyukai-samuel.github.io/taigi-speech/
 | Project | Venue | Links |
 |---|---|---|
 | Fantastic Taiwanese Hokkien Corpora and Where to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs and TTS | ROCLING 2026 | [Demo](rocling2026/) · [Paper (PDF)](rocling2026/paper.pdf) |
-| STONE: Soft-Label Tone Classification for Taiwanese Hokkien via CTC-Guided Contrastive Prototypes on Self-Supervised Models | Preprint | [Paper (PDF)](stone/paper.pdf) |
+| STONE: Soft-Label Tone Classification for Taiwanese Hokkien via CTC-Guided Contrastive Prototypes on Self-Supervised Models | ISCSLP 2026 (Oral) | [Demo](stone/) · [Paper (PDF)](stone/paper.pdf) |
 
 ## Preview locally
 
@@ -29,14 +29,18 @@ index.html            # landing page; projects are listed in the PROJECTS array
 sitemap.xml           # page list for search engines (submit in Google Search Console)
 assets/style.css      # shared styles
 assets/demo.js        # renders results table and audio cards from a page's data.json
+assets/stone.js       # renders the STONE demo (waveform, tone marks, syllable tables)
 rocling2026/          # ROCLING 2026 demo page
   index.html
   paper.pdf           # paper (until it appears in the ACL Anthology)
   data.json           # sentences, audio paths, and aggregated scores
   audio/              # synthetic clips: {sentence_id}_{han|tl|both}.mp3
   audio_human/        # SuíSiann human recordings (CC BY-SA 4.0)
-stone/
-  paper.pdf           # STONE preprint (paper only, no demo page)
+stone/                # STONE (ISCSLP 2026) demo page
+  index.html
+  paper.pdf
+  data.json           # tone predictions and reliability; numbers only, no transcripts
+  audio/              # SuíSiann recordings, original WAV (CC BY-SA 4.0)
 ```
 
 ## Adding a demo page for a new paper
@@ -70,7 +74,9 @@ Git LFS files.
 ## License
 
 - Code: [MIT License](LICENSE).
-- Content: the ROCLING 2026 paper PDF, synthetic audio, and rating data are CC BY 4.0; the STONE
-  preprint PDF is © the authors, all rights reserved; sentence texts follow the
+- Content: the ROCLING 2026 paper PDF, synthetic audio, rating data, and STONE tone predictions are
+  CC BY 4.0; the STONE paper PDF is © the authors, all rights reserved; sentence texts follow the
   SuíSiann text terms. See [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
-  The SuíSiann human recordings in `rocling2026/audio_human/` are CC BY-SA 4.0.
+  The SuíSiann human recordings in `rocling2026/audio_human/` and `stone/audio/` are CC BY-SA 4.0.
+  The STONE demo shows no SuíSiann transcripts, since their license permits speech-synthesis use
+  only.

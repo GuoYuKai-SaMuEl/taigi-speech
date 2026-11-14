@@ -4,13 +4,14 @@ This repository mixes code and content from different sources, each under its ow
 
 | Content | Location | License / terms |
 |---|---|---|
-| Website code (HTML, CSS, JavaScript) | `index.html`, `rocling2026/index.html`, `assets/` | [MIT License](LICENSE) |
+| Website code (HTML, CSS, JavaScript) | `index.html`, `rocling2026/index.html`, `stone/index.html`, `assets/` | [MIT License](LICENSE) |
 | Paper PDF (ROCLING 2026) | `rocling2026/paper.pdf` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
-| Paper PDF (STONE preprint) | `stone/paper.pdf` | © the authors, all rights reserved (see below) |
+| Paper PDF (STONE, ISCSLP 2026) | `stone/paper.pdf` | © the authors, all rights reserved (see below) |
 | Synthetic audio | `rocling2026/audio/` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 | Rating data (aggregated scores) | `rocling2026/data.json` (score fields) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 | Sentence texts (Han-ji, Tâi-lô) | `rocling2026/data.json` (`hanji`, `tailo`) | SuíSiann Dataset text terms (see below) |
-| Human recordings | `rocling2026/audio_human/` | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Human recordings | `rocling2026/audio_human/`, `stone/audio/` | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Tone predictions and reliability statistics | `stone/data.json` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 
 ## Paper
 
@@ -21,8 +22,9 @@ to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs 
 Creative Commons Attribution 4.0 International License to materials from 2016 onward, it is shared
 under CC BY 4.0.
 
-`stone/paper.pdf` is a preprint of *STONE: Soft-Label Tone Classification for Taiwanese Hokkien
-via CTC-Guided Contrastive Prototypes on Self-Supervised Models*. It is posted here for reading;
+`stone/paper.pdf` is the authors' version of *STONE: Soft-Label Tone Classification for Taiwanese
+Hokkien via CTC-Guided Contrastive Prototypes on Self-Supervised Models* (ISCSLP 2026). It is
+posted here for reading;
 copyright remains with the authors and no license is granted beyond that.
 
 ## Sentence texts
@@ -64,6 +66,27 @@ The three recordings in `rocling2026/audio_human/` come from the
   licenses in this repository do not apply to them.
 - All other SuíSiann recordings are available from the
   [SuíSiann website](https://suisiann-dataset.ithuan.tw/).
+
+The five recordings in `stone/audio/` also come from the SuíSiann Dataset (version 0.2.1) and are
+licensed under **CC BY-SA 4.0**. They are the original WAV files (48 kHz, 24-bit, mono), copied
+without editing, trimming, or re-encoding; the per-syllable playback on the demo page only seeks
+within these files.
+
+| File | Sentence ID | Original file |
+|---|---|---|
+| `stone/audio/SuiSiann_0310.wav` | SuiSiann_0310 | `ImTong/SuiSiann_0310.wav` |
+| `stone/audio/SuiSiann_2876.wav` | SuiSiann_2876 | `ImTong/SuiSiann_2876.wav` |
+| `stone/audio/SuiSiann_2812.wav` | SuiSiann_2812 | `ImTong/SuiSiann_2812.wav` |
+| `stone/audio/SuiSiann_0382.wav` | SuiSiann_0382 | `ImTong/SuiSiann_0382.wav` |
+| `stone/audio/SuiSiann_2441.wav` | SuiSiann_2441 | `ImTong/SuiSiann_2441.wav` |
+
+## STONE tone predictions
+
+`stone/data.json` holds the STONE classifier's output for the five recordings: per-syllable
+position category, citation tone, lawful tones, top-3 predicted tones with scores, CTC times, and a
+downsampled waveform for display, plus per-category reliability over 300 SuíSiann sentences.
+It contains no transcript text: the SuíSiann transcript license permits use in speech synthesis
+only, so the STONE demo shows tones as numbers and never shows the sentences themselves.
 
 ## Ratings
 

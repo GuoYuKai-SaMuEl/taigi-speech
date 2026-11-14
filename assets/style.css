@@ -1223,6 +1223,436 @@ h3.subsection::before {
 }
 
 /* --------------------------------------------------------------------------
+   STONE demo — waveform with tone marks, syllable table
+   -------------------------------------------------------------------------- */
+
+.source-note {
+  margin-top: 30px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--seal);
+  background: var(--paper-deep);
+  font-size: 0.92rem;
+  color: var(--ink-2);
+}
+
+.source-note p {
+  margin: 0;
+}
+
+.source-note p + p {
+  margin-top: 8px;
+}
+
+.position-key {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px 28px;
+  margin: 28px 0 18px;
+}
+
+.position-key div {
+  border-top: var(--hairline);
+  padding-top: 10px;
+}
+
+.position-key dt {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jade);
+  margin-bottom: 4px;
+}
+
+.position-key dd {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* Grid items default to min-width: auto; let the wide waveform and table scroll inside the card. */
+.case-card {
+  min-width: 0;
+}
+
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+.case-stat {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+
+.case-player {
+  align-items: stretch;
+  gap: 14px;
+}
+
+.case-player .p-toggle {
+  align-self: center;
+}
+
+.case-player .p-time {
+  align-self: center;
+}
+
+.wave-scroll {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.wave {
+  position: relative;
+  height: 112px;
+  padding-top: 30px;
+  cursor: pointer;
+  touch-action: pan-x;
+}
+
+.wave-svg {
+  display: block;
+  width: 100%;
+  height: 82px;
+}
+
+.wave-base,
+.wave-played {
+  fill: none;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.wave-base {
+  stroke: #CBC3AE;
+}
+
+.wave-played {
+  stroke: var(--jade);
+}
+
+.wave-seg {
+  display: none;
+  position: absolute;
+  top: 30px;
+  bottom: 0;
+  background: color-mix(in srgb, var(--jade) 12%, transparent);
+  pointer-events: none;
+}
+
+.tone-mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 1px dashed color-mix(in srgb, var(--jade) 55%, transparent);
+  pointer-events: none;
+}
+
+.tone-mark-num,
+.tone-mark-idx {
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tone-mark-num {
+  top: 0;
+  min-width: 18px;
+  padding: 3px 3px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--paper);
+  background: var(--jade);
+  border-radius: 2px;
+}
+
+.tone-mark-idx {
+  top: 19px;
+  font-size: 8.5px;
+  color: var(--ink-3);
+}
+
+.tone-mark.is-low .tone-mark-num {
+  background: var(--paper);
+  color: var(--jade);
+  box-shadow: inset 0 0 0 1px var(--jade);
+}
+
+.tone-mark.is-wrong {
+  border-left-color: color-mix(in srgb, var(--seal) 60%, transparent);
+}
+
+.tone-mark.is-wrong .tone-mark-num {
+  background: var(--seal);
+  color: #FFF;
+  box-shadow: none;
+}
+
+.tone-mark.is-active .tone-mark-num {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.case-notes {
+  margin: 18px 0 4px;
+}
+
+.case-notes-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 6px;
+}
+
+.case-notes ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.syl-ref {
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.86em;
+  font-weight: 500;
+  color: var(--jade-deep);
+  background: color-mix(in srgb, var(--jade) 10%, transparent);
+  border: 0;
+  border-radius: 2px;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+.syl-ref:hover {
+  background: var(--jade);
+  color: var(--paper);
+}
+
+.syl-wrap {
+  position: relative; /* keeps the visually hidden header label inside the scroll area */
+  margin-top: 18px;
+}
+
+.syl-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 600px;
+  font-size: 0.9rem;
+}
+
+.syl-table th,
+.syl-table td {
+  padding: 6px 10px;
+  border-bottom: var(--hairline);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.syl-table thead th {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1.5px solid var(--ink);
+  white-space: nowrap;
+}
+
+.syl-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+.syl-table tr.is-active td {
+  background: color-mix(in srgb, var(--jade) 9%, transparent);
+}
+
+.syl-table tr.is-wrong td {
+  background: color-mix(in srgb, var(--seal) 7%, transparent);
+}
+
+.syl-table .c-idx {
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+
+.syl-table .c-idx span {
+  display: inline-block;
+  min-width: 2ch;
+  margin-left: 8px;
+  text-align: right;
+}
+
+.syl-table .c-pos {
+  white-space: nowrap;
+}
+
+.syl-table .c-num {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.c-pred strong {
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+.c-score {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  margin-left: 5px;
+}
+
+.c-pred.is-low strong {
+  color: var(--ink-3);
+}
+
+.c-top3 {
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 0.84rem;
+}
+
+.c-alt + .c-alt {
+  margin-left: 12px;
+}
+
+.c-ok {
+  font-weight: 600;
+  color: var(--jade);
+  text-align: center;
+}
+
+.is-wrong .c-ok {
+  color: var(--seal);
+}
+
+.seg-play {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-2);
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.seg-play svg {
+  width: 8px;
+  height: 8px;
+  fill: var(--ink);
+}
+
+.seg-play .i-pause {
+  display: none;
+}
+
+.seg-play:hover {
+  background: var(--ink);
+}
+
+.seg-play:hover svg {
+  fill: var(--paper);
+}
+
+.seg-play.is-playing {
+  background: var(--jade);
+  border-color: var(--jade);
+}
+
+.seg-play.is-playing svg {
+  fill: #FFF;
+}
+
+.seg-play.is-playing .i-play {
+  display: none;
+}
+
+.seg-play.is-playing .i-pause {
+  display: block;
+}
+
+.results.reliability {
+  min-width: 0;
+}
+
+.results.reliability tbody th[scope="row"] {
+  white-space: normal;
+  font-weight: 400;
+}
+
+.results.reliability .c-num {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+}
+
+.results.reliability tr.is-low .bar > span {
+  background: var(--seal);
+}
+
+.formula {
+  margin: 4px 0 20px;
+  padding: 14px 20px;
+  background: var(--paper-deep);
+  border: var(--hairline);
+  border-radius: 3px;
+  font-size: 1.05rem;
+}
+
+.formula p {
+  margin: 0;
+}
+
+.formula p + p {
+  margin-top: 6px;
+}
+
+@media (max-width: 720px) {
+  .case-player {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .wave-scroll {
+    flex-basis: calc(100% - 48px);
+  }
+
+  .case-player .p-time {
+    flex-basis: 100%;
+    padding-left: 48px;
+    text-align: left;
+  }
+
+  .syl-table {
+    font-size: 0.84rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Citation
    -------------------------------------------------------------------------- */
 

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>STONE: Soft-Label Tone Classification for Taiwanese Hokkien · Demo</title>
+  <meta name="description" content="Demo for the ISCSLP 2026 paper STONE: a soft-label tone classifier for Taiwanese Hokkien, shown on SuíSiann recordings across tone-sandhi positions. 臺語（台灣閩南語）聲調分類示範：在不同連讀變調位置上的聲調判斷。">
+  <meta name="theme-color" content="#FAF8F2">
+  <link rel="canonical" href="https://guoyukai-samuel.github.io/taigi-speech/stone/">
+
+  <!-- Link previews -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Taigi Research">
+  <meta property="og:title" content="STONE: Soft-Label Tone Classification for Taiwanese Hokkien · Demo">
+  <meta property="og:description" content="A soft-label tone classifier for Taiwanese Hokkien, shown across tone-sandhi positions. 臺語聲調分類與連讀變調示範。">
+  <meta property="og:url" content="https://guoyukai-samuel.github.io/taigi-speech/stone/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "STONE: Soft-Label Tone Classification for Taiwanese Hokkien via CTC-Guided Contrastive Prototypes on Self-Supervised Models",
+    "author": [
+      { "@type": "Person", "name": "Yu-Kai Guo", "affiliation": "National Taiwan University", "url": "https://guoyukai-samuel.github.io/taigi-speech/" },
+      { "@type": "Person", "name": "Chen-Wei Hsu", "affiliation": "National Taiwan University" },
+      { "@type": "Person", "name": "Hung-yi Lee", "affiliation": "National Taiwan University" }
+    ],
+    "datePublished": "2026",
+    "inLanguage": "en",
+    "isPartOf": { "@type": "PublicationEvent", "name": "ISCSLP 2026" },
+    "abstract": "STONE classifies Taiwanese Hokkien tones with a self-supervised speech model, CTC-guided syllable alignment, and contrastive tone prototypes, and outputs soft labels with confidence scores that accommodate natural tone ambiguity.",
+    "description": "臺語（台灣閩南語）聲調分類：以自監督語音模型、CTC 音節對齊與聲調原型判斷每個音節的聲調，並輸出信心分數；本頁展示模型在不同連讀變調位置上的判斷。",
+    "keywords": ["Taiwanese Hokkien", "Taigi", "tone classification", "tone sandhi", "self-supervised speech representation", "CTC", "臺語", "台語", "臺灣閩南語", "聲調", "變調", "連讀變調", "聲調辨識"],
+    "url": "https://guoyukai-samuel.github.io/taigi-speech/stone/"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+TC:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-demo="data.json">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <div class="topbar-inner wrap">
+      <a class="wordmark" href="../" aria-label="Back to Taigi Research">
+        <svg class="seal-mark" width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="2" y="2" width="60" height="60" rx="9" fill="#B23A2B"/>
+          <text x="32" y="46" font-family="'Noto Serif TC','Songti TC',serif" font-size="38" font-weight="700" fill="#FAF8F2" text-anchor="middle">台</text>
+        </svg>
+        Taigi Research
+        <span class="wordmark-sub">臺語 · Tâi-gí</span>
+      </a>
+      <div class="topnav">
+        <span class="top-tag">ISCSLP 2026 · Demo</span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="wrap">
+    <header class="paper-head">
+      <p class="eyebrow">ISCSLP 2026<span class="dot">·</span>Oral<span class="dot">·</span>Demo</p>
+      <h1>STONE: Soft-Label Tone Classification for Taiwanese Hokkien</h1>
+      <p class="paper-sub">via CTC-Guided Contrastive Prototypes on Self-Supervised Models</p>
+      <p class="head-meta">Yu-Kai Guo · Chen-Wei Hsu · Hung-yi Lee</p>
+      <p class="head-affil">National Taiwan University</p>
+      <div class="head-actions buttons">
+        <a class="btn btn-solid" href="paper.pdf">Paper (PDF)</a>
+        <a class="arrow-link" href="../">Back to Taigi Research <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </header>
+
+    <section aria-labelledby="overview">
+      <h2 id="overview"><span class="no">01</span>Overview</h2>
+      <div class="lede">
+        <p>
+          STONE labels the tone of every syllable in Taiwanese Hokkien speech. A self-supervised
+          speech model with CTC alignment locates each syllable, and the syllable is compared with
+          eight learned tone prototypes; the result is a ranked list of tones with confidence scores
+          rather than a single hard label.
+        </p>
+        <p>
+          The correct tone depends on where a syllable sits. Tone sandhi in Taiwanese Hokkien is
+          positional: inside a word a syllable always takes its sandhi tone; before punctuation it
+          keeps its citation tone; between words it depends on whether the speaker pauses. The same
+          syllable can therefore have different correct tones in different positions, and the
+          examples below show how the classifier handles each position.
+        </p>
+        <div class="lede-zh" lang="zh-Hant-TW">
+          <p class="lede-zh-kicker">中文摘要</p>
+          <p>
+            STONE 是臺語（台灣閩南語）的聲調分類器：以自監督語音模型和 CTC 對齊找出每個音節，再和八個聲調原型比較，輸出帶信心分數的聲調排名。臺語的連讀變調依位置而定：詞內一定變調，標點前維持本調，詞與詞之間則要看有沒有停頓。本頁以 SuíSiann 真人錄音展示模型在不同變調位置上的判斷，並附上各位置的可靠度統計。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="examples">
+      <h2 id="examples"><span class="no">02</span>Examples</h2>
+      <div class="source-note">
+        <p>
+          Audio: <a href="https://suisiann-dataset.ithuan.tw/">SuíSiann Dataset</a> (i3thuan5),
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> —
+          https://suisiann-dataset.ithuan.tw/
+        </p>
+        <p>
+          Transcripts are not shown: the SuíSiann transcript license permits use in speech synthesis
+          only. Tone labels are shown as numbers (citation tone → expected tone).
+        </p>
+      </div>
+      <dl class="position-key">
+        <div><dt>Word-internal</dt><dd>Inside a word: the sandhi tone is required.</dd></div>
+        <div><dt>Before punctuation</dt><dd>Before a comma, full stop, or the end of the sentence: the citation tone is kept.</dd></div>
+        <div><dt>Word-final</dt><dd>At the end of a word inside a phrase: citation or sandhi tone, depending on pausing.</dd></div>
+        <div><dt>Before neutral tone</dt><dd>Right before a neutral-tone syllable: the citation tone is kept.</dd></div>
+        <div><dt>Neutral tone</dt><dd>The neutral-tone syllable itself, labeled 0.</dd></div>
+      </dl>
+      <p class="muted small">
+        The waveform marks each syllable’s predicted tone at the time CTC places it. The ▶ button in
+        each row plays only that syllable’s neighborhood: from halfway to the previous syllable to
+        halfway to the next one, so segment boundaries are approximate. Errors are shown as they are.
+      </p>
+      <div id="cases" class="sentence-list"></div>
+    </section>
+
+    <section aria-labelledby="reliability">
+      <h2 id="reliability"><span class="no">03</span>How reliable is this?</h2>
+      <div class="lede">
+        <p>
+          The five recordings above were selected, not sampled at random: each has a strict
+          alignment (one CTC segment per syllable), Score_tone ≥ 0.85, Coverage ≥ 0.85, at least
+          four informative sandhi categories, and every key syllable confident and within its
+          lawful tones.
+        </p>
+        <p>
+          Across 300 SuíSiann sentences, word-internal sandhi is reliable: among confident
+          syllables, the top prediction is lawful 83–100% of the time in every word-internal
+          category. The neutral-tone syllable itself is not (25%), and neither are tones 4, 5 and 8
+          right before a neutral tone (14–20%).
+        </p>
+      </div>
+      <div id="reliability-table"></div>
+    </section>
+
+    <section aria-labelledby="score">
+      <h2 id="score"><span class="no">04</span>How the score is computed</h2>
+      <div class="lede">
+        <p>
+          For each syllable, let <var>d</var><sub>1</sub> ≤ <var>d</var><sub>2</sub> ≤ … ≤
+          <var>d</var><sub>8</sub> be the distances from its embedding to the eight tone
+          prototypes, sorted, and let tone <var>i</var> be the tone at rank <var>i</var>. Then
+        </p>
+        <div class="formula" role="math" aria-label="m sub i equals d sub i plus 1 minus d sub i, over d sub i plus 1 plus d sub i; score sub i equals m sub i over d sub i plus m sub i">
+          <p><var>m</var><sub><var>i</var></sub> = (<var>d</var><sub><var>i</var>+1</sub> − <var>d</var><sub><var>i</var></sub>) / (<var>d</var><sub><var>i</var>+1</sub> + <var>d</var><sub><var>i</var></sub>)</p>
+          <p>score<sub><var>i</var></sub> = <var>m</var><sub><var>i</var></sub> / (<var>d</var><sub><var>i</var></sub> + <var>m</var><sub><var>i</var></sub>)</p>
+        </div>
+        <p>
+          The score is high when the syllable is close to a prototype and clearly closer to it than
+          to the next one. “Predicted” shows the rank-1 tone and its score; a syllable counts as
+          confident when that score is at least 0.7. Scores of different ranks are computed
+          separately and do not sum to 1.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="citation">
+      <h2 id="citation"><span class="no">05</span>Citation</h2>
+      <div class="code-block">
+        <pre><code id="bibtex">@inproceedings{guo2026stone,
+  title     = {{STONE}: Soft-Label Tone Classification for {T}aiwanese {H}okkien via {CTC}-Guided Contrastive Prototypes on Self-Supervised Models},
+  author    = {Guo, Yu-Kai and Hsu, Chen-Wei and Lee, Hung-yi},
+  booktitle = {Proceedings of ISCSLP 2026},
+  year      = {2026},
+  note      = {To appear},
+  url       = {https://guoyukai-samuel.github.io/taigi-speech/stone/paper.pdf}
+}</code></pre>
+        <button type="button" class="btn copy" data-copy="bibtex">Copy BibTeX</button>
+      </div>
+    </section>
+
+    <section class="site-notes" aria-labelledby="license-heading">
+      <h2 id="license-heading"><span class="no">06</span>License and attribution</h2>
+      <ul>
+        <li>Website code: <a href="../LICENSE">MIT License</a>.</li>
+        <li>Tone predictions and reliability statistics: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+        <li>Paper PDF: © the authors, all rights reserved.</li>
+        <li>
+          Audio: <a href="https://suisiann-dataset.ithuan.tw/">SuíSiann Dataset</a> (i3thuan5),
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. The five
+          recordings in <code>stone/audio/</code> are the original WAV files, unedited; the other
+          licenses on this site do not apply to them.
+        </li>
+        <li>
+          Transcripts are not shown: the SuíSiann transcript license permits use in speech
+          synthesis only. Tone labels are shown as numbers (citation tone → expected tone).
+        </li>
+      </ul>
+      <p>
+        Details: <a href="../LICENSE-CONTENT.md">LICENSE-CONTENT.md</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-grid wrap">
+      <p>Yu-Kai Guo — National Taiwan University</p>
+      <p class="foot-mark">ISCSLP 2026</p>
+    </div>
+  </footer>
+  <div class="spine" aria-hidden="true"></div>
+
+  <script src="../assets/stone.js"></script>
+</body>
+</html>
