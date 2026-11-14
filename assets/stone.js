@@ -236,7 +236,7 @@
       segButtons.push(segBtn);
 
       var tr = el("tr", { class: s.lawful ? "" : "is-wrong" }, [
-        el("td", { class: "c-idx" }, [segBtn, el("span", { text: String(s.idx) })]),
+        el("td", { class: "c-idx" }, [segBtn, el("span", { class: "c-idx-num", text: String(s.idx) })]),
         el("td", { class: "c-pos", text: POSITIONS[s.position] }),
         el("td", { class: "c-num", text: String(s.citation_tone) }),
         el("td", { class: "c-num", text: s.lawful_tones.join(" / ") }),

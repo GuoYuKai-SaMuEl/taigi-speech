@@ -1494,7 +1494,7 @@ h3.subsection::before {
   font-size: 0.82rem;
 }
 
-.syl-table .c-idx span {
+.syl-table .c-idx-num {
   display: inline-block;
   min-width: 2ch;
   margin-left: 8px;
