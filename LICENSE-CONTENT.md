@@ -15,9 +15,11 @@ This repository mixes code and content from different sources, each under its ow
 
 ## Paper
 
-`rocling2026/paper.pdf` is the authors' version of *Fantastic Taiwanese Hokkien Corpora and Where
-to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs and TTS*
-(ROCLING 2026), hosted here until the proceedings appear in the ACL Anthology. In line with the
+*Fantastic Taiwanese Hokkien Corpora and Where to Find Them: Bootstrapping Low-Resource Speech and
+Text via Off-the-Shelf LLMs and TTS* is published in the ROCLING 2026 proceedings in the ACL
+Anthology: https://aclanthology.org/2026.rocling-main.10/. `rocling2026/paper.pdf` is the authors'
+copy that was hosted here before publication; it is kept so earlier links keep working, and the
+site now links to the Anthology version. In line with the
 [ACL Anthology copyright policy](https://aclanthology.org/faq/copyright/), which applies the
 Creative Commons Attribution 4.0 International License to materials from 2016 onward, it is shared
 under CC BY 4.0.

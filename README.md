@@ -8,7 +8,7 @@ Website: https://guoyukai-samuel.github.io/taigi-speech/
 
 | Project | Venue | Links |
 |---|---|---|
-| Fantastic Taiwanese Hokkien Corpora and Where to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs and TTS | ROCLING 2026 | [Demo](rocling2026/) · [Paper (PDF)](rocling2026/paper.pdf) |
+| Fantastic Taiwanese Hokkien Corpora and Where to Find Them: Bootstrapping Low-Resource Speech and Text via Off-the-Shelf LLMs and TTS | ROCLING 2026 | [Demo](rocling2026/) · [ACL Anthology](https://aclanthology.org/2026.rocling-main.10/) |
 | STONE: Soft-Label Tone Classification for Taiwanese Hokkien via CTC-Guided Contrastive Prototypes on Self-Supervised Models | ISCSLP 2026 (Oral) | [Demo](stone/) · [Paper (PDF)](stone/paper.pdf) |
 
 ## Preview locally
@@ -32,7 +32,7 @@ assets/demo.js        # renders results table and audio cards from a page's data
 assets/stone.js       # renders the STONE demo (waveform, tone marks, syllable tables)
 rocling2026/          # ROCLING 2026 demo page
   index.html
-  paper.pdf           # paper (until it appears in the ACL Anthology)
+  paper.pdf           # authors' copy, kept for earlier links; the paper is in the ACL Anthology
   data.json           # sentences, audio paths, and aggregated scores
   audio/              # synthetic clips: {sentence_id}_{han|tl|both}.mp3
   audio_human/        # SuíSiann human recordings (CC BY-SA 4.0)
